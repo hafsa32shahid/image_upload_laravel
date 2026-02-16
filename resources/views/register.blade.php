@@ -1,12 +1,14 @@
 @extends('layout.client-layout')
 @section('content')
-    <div class="container">
-        <form method="POST" action="{{ route('auth.create') }}">
+    <div class="flex-column d-flex align-items-center justify-content-center " style="height: 100vh; background-color: burlywood;">
+       <div class="w-50 p-4 border rounded">
+        <h1 class="text-center fw-bold fs-1">Register User</h1>
+         <form method="POST" action="{{ route('auth.create') }}">
+            @method("POST")
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">FullName</label>
                 <input type="text" name="name" class="form-control" value="{{ old('name') }}" id="name">
-                <div id="text" class="form-text">We'll never share your email with anyone else.</div>
                 <div class="text-danger">
                 @error('name')
                 {{ $message }}
@@ -35,10 +37,10 @@
                 {{ $message }}
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
+            <a class="mx-auto text-center" href="{{ route('login') }}">-> Login</a>
         </form>
-         <div class="d-flex">
-           <a class=" btn btn-info" href="{{ route('auth.login') }}">Login</a>
-        </div>
+       </div>
+        
     </div>
 @endsection

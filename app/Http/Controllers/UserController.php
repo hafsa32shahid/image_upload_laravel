@@ -27,7 +27,7 @@ class UserController extends Controller
             "password"=> Hash::make($req->password)
         ]);
 
-        return redirect()->route('image')->with("status","successfully Regsitered");
+        return redirect()->route('login')->with("status","successfully Regsitered");
     }
     // login screen
     function login(){
@@ -37,12 +37,11 @@ class UserController extends Controller
     function authenticate(Request $req) {
           $req->validate([
           'email' => 'required|email|exists:users,email|max:255',
-
           "password"=> "required|min:6"
         ]);
 
         if(Auth::attempt(["email"=> $req->email,"password"=>$req->password])){
-          return redirect()->route("image");
+          return redirect()->route("image")->with("status","successfully Regsitered");
         }
     }
 }

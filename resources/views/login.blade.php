@@ -1,8 +1,13 @@
 @extends('layout.client-layout')
 @section('content')
-    <div class="container">
-        <form method="POST" action="{{ route("auth.login") }}">
-            @csrf
+
+ <div class="flex-column d-flex align-items-center justify-content-center " style="height: 100vh; background-color: burlywood;">
+       <div class="w-50 p-4 border rounded">
+        <h1 class="text-center fw-bold fs-1">Login User</h1>
+         <form method="POST" action="{{ route("auth.login") }}">
+             @method('POST')
+           @csrf
+
             <div class="mb-3">
                 <label for="Email1" class="form-label">Email address</label>
                 <input type="email"  name="email" class="form-control" value="{{ old('email') }}" id="Email1">
@@ -20,10 +25,12 @@
                 {{ $message }}
                 @enderror</div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+         
+            <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
+            <a class="mx-auto text-center" href="{{ route('auth.register') }}">-> Register</a>
         </form>
-        <div class="d-flex">
-           <a class=" btn btn-info" href="{{ route('auth.register') }}">Register</a>
-        </div>
+       </div>
+        
     </div>
+ 
 @endsection
